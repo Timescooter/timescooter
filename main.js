@@ -25,10 +25,10 @@ function createVideoBlocks() {
         container.lastChild.appendChild(videoBlock);
     }
 
-    setupPopupListeners();
+    setupVideoListeners();
 }
 
-function setupPopupListeners() {
+function setupVideoListeners() {
     const videoThumbnails = document.querySelectorAll('.video-thumbnail');
     const popup = document.getElementById('videoPopup');
     const closePopup = document.querySelector('.close-popup');
@@ -37,29 +37,42 @@ function setupPopupListeners() {
     const popupVideoDescription = document.getElementById('popupVideoDescription');
 
     videoThumbnails.forEach(thumbnail => {
-        thumbnail.addEventListener('click', function() {
+        thumbnail.addEventListener('click', function(event) {
+            event.preventDefault();
             const videoId = this.getAttribute('data-video-id');
             const videoTitle = this.parentNode.querySelector('.video-title').textContent;
             const videoDescription = this.parentNode.querySelector('.video-description').textContent;
 
-            popupVideoContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" frameborder="0" allowfullscreen allow="autoplay"></iframe>`;
-            popupVideoTitle.textContent = videoTitle;
-            popupVideoDescription.textContent = videoDescription;
+            if (window.innerWidth <= 768) {
+                // Sur mobile, remplacer la miniature par l'iframe directement
+                if (!this.querySelector('iframe')) {
+                    this.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" frameborder="0" allowfullscreen allow="autoplay"></iframe>`;
+                }
+            } else {
+                // Sur desktop, utiliser la pop-in
+                popupVideoContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" frameborder="0" allowfullscreen allow="autoplay"></iframe>`;
+                popupVideoTitle.textContent = videoTitle;
+                popupVideoDescription.textContent = videoDescription;
 
-            popup.style.display = 'block';
-            setTimeout(() => {
-                popup.classList.add('active');
-            }, 10);
+                popup.style.display = 'block';
+                setTimeout(() => {
+                    popup.classList.add('active');
+                }, 10);
+            }
         });
     });
 
-    closePopup.addEventListener('click', closeVideoPopup);
+    if (closePopup) {
+        closePopup.addEventListener('click', closeVideoPopup);
+    }
 
-    popup.addEventListener('click', function(e) {
-        if (e.target === popup) {
-            closeVideoPopup();
-        }
-    });
+    if (popup) {
+        popup.addEventListener('click', function(e) {
+            if (e.target === popup) {
+                closeVideoPopup();
+            }
+        });
+    }
 }
 
 function closeVideoPopup() {
