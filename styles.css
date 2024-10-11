@@ -97,11 +97,19 @@ body {
 .video-thumbnail {
     position: relative;
     cursor: pointer;
+    padding-bottom: 56.25%; /* Aspect ratio 16:9 */
+    height: 0;
+    overflow: hidden;
 }
 
-.video-thumbnail img {
+.video-thumbnail img,
+.video-thumbnail iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: auto;
+    height: 100%;
+    border: none;
 }
 
 .play-button {
@@ -272,17 +280,9 @@ footer {
         margin-bottom: 20px;
     }
 
-    .video-block iframe {
-        height: 250px;
-    }
-
-    .video-popup-content {
-        padding: 30px 15px 15px;
-    }
-
-    .close-popup {
-        top: 5px;
-        right: 5px;
+    .video-thumbnail {
+        height: 0;
+        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
     }
 
     .video-popup {
@@ -298,9 +298,5 @@ footer {
     .hero-title {
         font-size: 1.5rem;
         left: 10px;
-    }
-
-    .video-block iframe {
-        height: 200px;
     }
 }
