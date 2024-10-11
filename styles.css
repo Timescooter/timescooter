@@ -1,0 +1,141 @@
+@font-face {
+    font-family: 'UrbanJungle';
+    src: url('UrbanJungleDEMO.otf') format('opentype');
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: white;
+}
+
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-top: 42.1875%;
+    overflow: hidden;
+}
+
+.hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 133.33%;
+    background-image: url('https://wallpapercave.com/wp/wp8725186.jpg');
+    background-position: center 80%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.hero-title {
+    position: absolute;
+    top: 20px;
+    left: 60px;
+    text-align: left;
+    color: white;
+    font-family: 'UrbanJungle', sans-serif;
+    font-size: 3rem;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    z-index: 1;
+}
+
+.video-section-title {
+    text-align: center;
+    font-size: 2rem;
+    margin: 40px 0 20px;
+    font-family: 'UrbanJungle', sans-serif;
+}
+
+.video-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.video-block {
+    width: 28%;
+    margin: 0 2% 20px;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.video-block iframe {
+    width: 100%;
+    height: 200px;
+    display: block;
+    border: none;
+}
+
+.video-description {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px;
+    transition: top 0.3s ease-in-out;
+    pointer-events: none;
+}
+
+.video-block:hover .video-description {
+    top: auto;
+    bottom: 0;
+}
+
+footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
+}
+
+/* Media queries pour le design responsive */
+@media screen and (max-width: 768px) {
+    .hero-section {
+        padding-top: 60%; /* Réduire la hauteur de l'image de fond */
+    }
+
+    .hero-title {
+        font-size: 2rem;
+        left: 20px;
+    }
+
+    .video-block {
+        width: 90%;
+        margin: 0 0 20px;
+    }
+
+    .video-block iframe {
+        height: 250px;
+    }
+
+    .video-section-title {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hero-section {
+        padding-top: 80%; /* Encore plus petit pour les très petits écrans */
+    }
+
+    .hero-title {
+        font-size: 1.5rem;
+        left: 10px;
+    }
+
+    .video-block iframe {
+        height: 200px;
+    }
+}
