@@ -285,6 +285,11 @@ footer {
         padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
     }
 
+    .video-description {
+        max-height: none;
+        opacity: 1;
+    }
+
     .video-popup {
         display: none !important;
     }
