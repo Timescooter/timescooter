@@ -15,9 +15,7 @@ function createVideoBlocks() {
         videoBlock.innerHTML = `
             <div class="video-thumbnail" data-video-id="${video.id}">
                 <img src="https://img.youtube.com/vi/${video.id}/0.jpg" alt="${video.title}">
-                <div class="play-overlay">
-                    <div class="play-button"></div>
-                </div>
+                <div class="play-button"></div>
             </div>
             <div class="video-info">
                 <h3 class="video-title">${video.title}</h3>
@@ -47,15 +45,15 @@ function setupVideoListeners() {
 
             if (window.innerWidth <= 768) {
                 // Sur mobile, remplacer la miniature par l'iframe
-                this.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen allow="autoplay; fullscreen"></iframe>`;
+                this.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>`;
                 
                 // Ajuster la taille de l'iframe
                 const iframe = this.querySelector('iframe');
                 iframe.style.width = '100%';
                 iframe.style.height = '100%';
             } else {
-                // Sur desktop, utiliser la pop-in
-                popupVideoContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen allow="autoplay; fullscreen"></iframe>`;
+                // Sur desktop, utiliser la pop-in avec autoplay
+                popupVideoContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" frameborder="0" allowfullscreen allow="autoplay; fullscreen"></iframe>`;
                 popupVideoTitle.textContent = videoTitle;
                 popupVideoDescription.textContent = videoDescription;
 
