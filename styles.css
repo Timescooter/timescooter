@@ -66,6 +66,11 @@ body {
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.video-block:hover {
+    transform: translateY(-5px);
 }
 
 .video-block iframe {
@@ -75,21 +80,31 @@ body {
     border: none;
 }
 
-.video-description {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
+.video-info {
     padding: 10px;
-    transition: top 0.3s ease-in-out;
-    pointer-events: none;
+    background-color: #f8f8f8;
+}
+
+.video-title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.video-description {
+    margin: 5px 0 0;
+    font-size: 0.9rem;
+    color: #666;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
 }
 
 .video-block:hover .video-description {
-    top: auto;
-    bottom: 0;
+    max-height: 100px;
+    opacity: 1;
 }
 
 footer {
@@ -100,10 +115,9 @@ footer {
     margin-top: 20px;
 }
 
-/* Media queries pour le design responsive */
 @media screen and (max-width: 768px) {
     .hero-section {
-        padding-top: 60%; /* Réduire la hauteur de l'image de fond */
+        padding-top: 60%;
     }
 
     .hero-title {
@@ -127,7 +141,7 @@ footer {
 
 @media screen and (max-width: 480px) {
     .hero-section {
-        padding-top: 80%; /* Encore plus petit pour les très petits écrans */
+        padding-top: 80%;
     }
 
     .hero-title {

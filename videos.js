@@ -10,23 +10,24 @@ const videoData = [
         description: "Un guide étape par étape pour maîtriser le tailwhip en trottinette freestyle."
     },
     {
-        id: "VIDEO_ID_3",
-        title: "Les meilleurs spots de freestyle",
-        description: "Tour d'horizon des meilleurs endroits pour pratiquer la trottinette freestyle."
+        id: "Y5J_IIPZgXw",
+        title: "MON ÉVOLUTION EN 10 ANS DE TROTTINETTE FREESTYLE !",
+        description: "la reaction de scoot de street a son evolution."
     },
     {
-        id: "VIDEO_ID_4",
-        title: "Entretien de votre trottinette",
-        description: "Conseils d'experts pour maintenir votre trottinette en parfait état."
+        id: "5KAmiD8rLS4",
+        title: "48 000€ POUR LE MEILLEUR TRICK !",
+        description: "qui à mis le meilleur trix alors."
     },
     {
-        id: "VIDEO_ID_5",
-        title: "Compétition de trottinette freestyle",
-        description: "Highlights des dernières compétitions internationales de freestyle."
+        id: "28FOlxPUJKg",
+        title: "Le Skatepark Incroyable de Codi (dans son jardin)",
+        description: "vous aimerais avoir ca vous."
     },
     {
-        id: "VIDEO_ID_6",
-        title: "Sécurité en trottinette freestyle",
-        description: "Les précautions essentielles à prendre pour pratiquer en toute sécurité."
+        id: "L-OPw7qXrQw",
+        title: "JE ME FAIS HUMILIER PAR UN JEUNE DE 15 ANS !",
+        description: "il est trop ford."
     }
+
 ];

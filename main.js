@@ -5,9 +5,9 @@ function createVideoBlocks() {
         videoBlock.className = 'video-block';
         videoBlock.innerHTML = `
             <iframe src="https://www.youtube.com/embed/${video.id}" frameborder="0" allowfullscreen></iframe>
-            <div class="video-description">
-                <h3>${video.title}</h3>
-                <p>${video.description}</p>
+            <div class="video-info">
+                <h3 class="video-title">${video.title}</h3>
+                <p class="video-description">${video.description}</p>
             </div>
         `;
         container.appendChild(videoBlock);
