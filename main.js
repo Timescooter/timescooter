@@ -15,7 +15,9 @@ function createVideoBlocks() {
         videoBlock.innerHTML = `
             <div class="video-thumbnail" data-video-id="${video.id}">
                 <img src="https://img.youtube.com/vi/${video.id}/0.jpg" alt="${video.title}">
-                <div class="play-button"></div>
+                <div class="play-overlay">
+                    <div class="play-button"></div>
+                </div>
             </div>
             <div class="video-info">
                 <h3 class="video-title">${video.title}</h3>
@@ -44,13 +46,13 @@ function setupVideoListeners() {
             const videoDescription = this.parentNode.querySelector('.video-description').textContent;
 
             if (window.innerWidth <= 768) {
-                // Sur mobile, remplacer la miniature par un lien vers YouTube
-                this.innerHTML = `
-                    <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank" rel="noopener noreferrer">
-                        <img src="https://img.youtube.com/vi/${videoId}/0.jpg" alt="${videoTitle}">
-                        <div class="play-button"></div>
-                    </a>
-                `;
+                // Sur mobile, remplacer la miniature par l'iframe
+                this.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen allow="autoplay; fullscreen"></iframe>`;
+                
+                // Ajuster la taille de l'iframe
+                const iframe = this.querySelector('iframe');
+                iframe.style.width = '100%';
+                iframe.style.height = '100%';
             } else {
                 // Sur desktop, utiliser la pop-in
                 popupVideoContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen allow="autoplay; fullscreen"></iframe>`;
