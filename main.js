@@ -44,10 +44,8 @@ function setupVideoListeners() {
             const videoDescription = this.parentNode.querySelector('.video-description').textContent;
 
             if (window.innerWidth <= 768) {
-                // Sur mobile, remplacer la miniature par l'iframe directement
-                if (!this.querySelector('iframe')) {
-                    this.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" frameborder="0" allowfullscreen allow="autoplay"></iframe>`;
-                }
+                // Sur mobile, remplacer la miniature par l'iframe et lancer la vidéo immédiatement
+                this.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" frameborder="0" allowfullscreen allow="autoplay"></iframe>`;
             } else {
                 // Sur desktop, utiliser la pop-in
                 popupVideoContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" frameborder="0" allowfullscreen allow="autoplay"></iframe>`;
