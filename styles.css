@@ -43,15 +43,23 @@ body {
     z-index: 1;
 }
 
+.video-section-title,
+.video-container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
 .video-section-title {
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     font-size: 1.5rem;
     text-transform: uppercase;
     color: #333;
-    margin: 40px auto 20px;
-    max-width: 1200px;
-    padding: 0 20px;
+    margin-top: 40px;
+    margin-bottom: 20px;
     text-align: left;
 }
 
@@ -59,14 +67,11 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
 }
 
 .video-block {
     width: 28%;
-    margin: 0 2% 20px;
+    margin: 0 2% 20px 0;
     position: relative;
     border-radius: 10px;
     overflow: hidden;
@@ -130,13 +135,20 @@ footer {
         left: 20px;
     }
 
+    .video-section-title,
+    .video-container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
     .video-section-title {
         font-size: 1.2rem;
-        margin: 30px auto 15px;
+        margin-top: 30px;
+        margin-bottom: 15px;
     }
 
     .video-block {
-        width: 90%;
+        width: 100%;
         margin: 0 0 20px;
     }
 
@@ -158,4 +170,4 @@ footer {
     .video-block iframe {
         height: 200px;
     }
-}
+}   
