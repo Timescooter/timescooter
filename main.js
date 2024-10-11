@@ -44,16 +44,16 @@ function setupVideoListeners() {
             const videoDescription = this.parentNode.querySelector('.video-description').textContent;
 
             if (window.innerWidth <= 768) {
-                // Sur mobile, remplacer la miniature par l'iframe et lancer la vidéo immédiatement
-                this.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" frameborder="0" allowfullscreen allow="autoplay; fullscreen"></iframe>`;
-                
-                // Forcer le redimensionnement de l'iframe
-                const iframe = this.querySelector('iframe');
-                iframe.style.width = '100%';
-                iframe.style.height = '100%';
+                // Sur mobile, remplacer la miniature par un lien vers YouTube
+                this.innerHTML = `
+                    <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank" rel="noopener noreferrer">
+                        <img src="https://img.youtube.com/vi/${videoId}/0.jpg" alt="${videoTitle}">
+                        <div class="play-button"></div>
+                    </a>
+                `;
             } else {
                 // Sur desktop, utiliser la pop-in
-                popupVideoContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" frameborder="0" allowfullscreen allow="autoplay; fullscreen"></iframe>`;
+                popupVideoContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen allow="autoplay; fullscreen"></iframe>`;
                 popupVideoTitle.textContent = videoTitle;
                 popupVideoDescription.textContent = videoDescription;
 
