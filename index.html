@@ -15,11 +15,15 @@
     <h2 id="les-meilleures-vidéos-du-moment" class="video-section-title">Les meilleures vidéos du moment</h2>
 
     <div class="carousel-container">
-        <button class="carousel-button prev">&lt;</button>
+        <button class="carousel-button prev" aria-label="Précédent">
+            <span class="arrow left"></span>
+        </button>
         <div id="videoCarousel" class="video-carousel">
             <!-- Les vidéos seront insérées ici par JavaScript -->
         </div>
-        <button class="carousel-button next">&gt;</button>
+        <button class="carousel-button next" aria-label="Suivant">
+            <span class="arrow right"></span>
+        </button>
     </div>
 
     <div id="videoPopup" class="video-popup">
