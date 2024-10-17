@@ -1,15 +1,10 @@
-function createVideoBlocks() {
-    const container = document.getElementById('videoContainer');
-    container.innerHTML = '';
+let currentIndex = 0;
 
-    for (let i = 0; i < videoData.length; i++) {
-        if (i % 3 === 0) {
-            var row = document.createElement('div');
-            row.className = 'video-row';
-            container.appendChild(row);
-        }
+function createVideoCarousel() {
+    const carousel = document.getElementById('videoCarousel');
+    carousel.innerHTML = '';
 
-        const video = videoData[i];
+    videoData.forEach((video, index) => {
         const videoBlock = document.createElement('div');
         videoBlock.className = 'video-block';
         videoBlock.innerHTML = `
@@ -22,10 +17,32 @@ function createVideoBlocks() {
                 <p class="video-description">${video.description}</p>
             </div>
         `;
-        container.lastChild.appendChild(videoBlock);
-    }
+        carousel.appendChild(videoBlock);
+    });
 
     setupVideoListeners();
+    setupCarouselControls();
+}
+
+function setupCarouselControls() {
+    const prevButton = document.querySelector('.carousel-button.prev');
+    const nextButton = document.querySelector('.carousel-button.next');
+    const carousel = document.getElementById('videoCarousel');
+
+    prevButton.addEventListener('click', () => {
+        currentIndex = Math.max(currentIndex - 1, 0);
+        updateCarousel();
+    });
+
+    nextButton.addEventListener('click', () => {
+        currentIndex = Math.min(currentIndex + 1, videoData.length - 3);
+        updateCarousel();
+    });
+
+    function updateCarousel() {
+        const slideWidth = carousel.clientWidth / 3;
+        carousel.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+    }
 }
 
 function setupVideoListeners() {
@@ -44,15 +61,12 @@ function setupVideoListeners() {
             const videoDescription = this.parentNode.querySelector('.video-description').textContent;
 
             if (window.innerWidth <= 768) {
-                // Sur mobile, remplacer la miniature par l'iframe
                 this.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>`;
                 
-                // Ajuster la taille de l'iframe
                 const iframe = this.querySelector('iframe');
                 iframe.style.width = '100%';
                 iframe.style.height = '100%';
             } else {
-                // Sur desktop, utiliser la pop-in avec autoplay
                 popupVideoContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" frameborder="0" allowfullscreen allow="autoplay; fullscreen"></iframe>`;
                 popupVideoTitle.textContent = videoTitle;
                 popupVideoDescription.textContent = videoDescription;
@@ -89,4 +103,4 @@ function closeVideoPopup() {
     }, 300);
 }
 
-document.addEventListener('DOMContentLoaded', createVideoBlocks);
+document.addEventListener('DOMContentLoaded', createVideoCarousel);
