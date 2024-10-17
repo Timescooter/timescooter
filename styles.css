@@ -1,302 +1,47 @@
-@font-face {
-    font-family: 'UrbanJungle';
-    src: url('UrbanJungleDEMO.otf') format('opentype');
-}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIME SCOOTER - Les meilleures vidéos du moment</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="hero-section">
+        <div class="hero-image"></div>
+        <h1 id="time-scooter" class="hero-title">TIME SCOOTER</h1>
+    </div>
 
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: white;
-}
+    <h2 id="les-meilleures-vidéos-du-moment" class="video-section-title">Les meilleures vidéos du moment</h2>
 
-.hero-section {
-    position: relative;
-    width: 100%;
-    height: 0;
-    padding-top: 42.1875%;
-    overflow: hidden;
-}
+    <div class="carousel-container">
+        <button class="carousel-button prev" aria-label="Précédent">
+            <span class="arrow left"></span>
+        </button>
+        <div id="videoCarousel" class="video-carousel">
+            <!-- Les vidéos seront insérées ici par JavaScript -->
+        </div>
+        <button class="carousel-button next" aria-label="Suivant">
+            <span class="arrow right"></span>
+        </button>
+    </div>
 
-.hero-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 133.33%;
-    background-image: url('https://wallpapercave.com/wp/wp8725186.jpg');
-    background-position: center 80%;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
+    <div id="videoPopup" class="video-popup">
+        <div class="video-popup-content">
+            <span class="close-popup">&times;</span>
+            <div id="popupVideoContainer"></div>
+            <div class="popup-video-info">
+                <h3 id="popupVideoTitle"></h3>
+                <p id="popupVideoDescription"></p>
+            </div>
+        </div>
+    </div>
 
-.hero-title {
-    position: absolute;
-    top: 20px;
-    left: 60px;
-    text-align: left;
-    color: white;
-    font-family: 'UrbanJungle', sans-serif;
-    font-size: 3rem;
-    letter-spacing: 2px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-    z-index: 1;
-}
+    <footer>
+        <p>Timescooter limited</p>
+    </footer>
 
-.video-section-title {
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 20px;
-    padding-right: 20px;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    font-size: 1.5rem;
-    text-transform: uppercase;
-    color: #333;
-    margin-top: 40px;
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-.carousel-container {
-    position: relative;
-    max-width: 1200px;
-    margin: 0 auto;
-    overflow: hidden;
-}
-
-.video-carousel {
-    display: flex;
-    transition: transform 0.5s ease;
-}
-
-.video-block {
-    flex: 0 0 calc(33.33% - 20px);
-    margin-right: 20px;
-    position: relative;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
-}
-
-.video-block:hover {
-    transform: translateY(-5px);
-}
-
-.video-thumbnail {
-    position: relative;
-    cursor: pointer;
-    padding-bottom: 56.25%; /* Aspect ratio 16:9 */
-    height: 0;
-    overflow: hidden;
-}
-
-.video-thumbnail img,
-.video-thumbnail iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-.play-button {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 20px 0 20px 40px;
-    border-color: transparent transparent transparent white;
-    opacity: 0.8;
-    transition: opacity 0.3s ease;
-}
-
-.video-thumbnail:hover .play-button {
-    opacity: 1;
-}
-
-.video-info {
-    padding: 10px;
-    background-color: #f8f8f8;
-}
-
-.video-title {
-    margin: 0;
-    font-size: 1rem;
-    font-weight: bold;
-    color: #333;
-}
-
-.video-description {
-    margin: 5px 0 0;
-    font-size: 0.9rem;
-    color: #666;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease, opacity 0.3s ease;
-    opacity: 0;
-}
-
-.video-block:hover .video-description {
-    max-height: 100px;
-    opacity: 1;
-}
-
-.carousel-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    font-size: 18px;
-    cursor: pointer;
-    z-index: 10;
-}
-
-.carousel-button.prev {
-    left: 10px;
-}
-
-.carousel-button.next {
-    right: 10px;
-}
-
-.video-popup {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    overflow-y: auto;
-}
-
-.video-popup.active {
-    opacity: 1;
-}
-
-.video-popup-content {
-    position: relative;
-    margin: 5vh auto;
-    padding: 40px 20px 20px;
-    width: 90%;
-    max-width: 900px;
-    background-color: white;
-    border-radius: 10px;
-    transform: scale(0.7);
-    transition: transform 0.3s ease;
-}
-
-.video-popup.active .video-popup-content {
-    transform: scale(1);
-}
-
-.close-popup {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 30px;
-    height: 30px;
-    background-color: #f0f0f0;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 20px;
-    color: #333;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    z-index: 1001;
-}
-
-.close-popup:hover {
-    background-color: #e0e0e0;
-}
-
-#popupVideoContainer {
-    width: 100%;
-    padding-top: 56.25%; /* 16:9 Aspect Ratio */
-    position: relative;
-    margin-bottom: 20px;
-}
-
-#popupVideoContainer iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-#popupVideoTitle {
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 10px;
-}
-
-#popupVideoDescription {
-    font-size: 1rem;
-    color: #666;
-    line-height: 1.5;
-}
-
-footer {
-    background-color: black;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-    margin-top: 20px;
-}
-
-@media screen and (max-width: 768px) {
-    .hero-section {
-        padding-top: 60%;
-    }
-
-    .hero-title {
-        font-size: 2rem;
-        left: 20px;
-    }
-
-    .video-section-title {
-        font-size: 1.2rem;
-        margin-top: 30px;
-        margin-bottom: 15px;
-    }
-
-    .video-block {
-        flex: 0 0 calc(100% - 20px);
-    }
-
-    .video-description {
-        max-height: none;
-        opacity: 1;
-    }
-
-    .carousel-button {
-        display: none;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .hero-section {
-        padding-top: 80%;
-    }
-
-    .hero-title {
-        font-size: 1.5rem;
-        left: 10px;
-    }
-}
+    <script src="videos.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
